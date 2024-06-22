@@ -14,6 +14,11 @@
   <h2 style="font-size: 50px;margin: 0px 0px 20px 0px;">Requestador</h2>
   <div id="container" style="display: flex;flex-direction: column;width: 100%; padding: 10px;">
     <div style="display: flex;flex-direction: column;width: 100%;height: calc(50vh - 58px);">
+      <p style="margin-bottom: 5px; margin-top: 5px;">Header</p>
+      <div style="display: flex; width: 100%;">
+        <input id="header-title-request" type="text" style="margin-bottom: 5px;    width: 50%;"></input>
+        <input id="header-content-request" type="text" style="margin-bottom: 5px;    width: 50%;"></input>
+      </div>
       <p style="margin-bottom: 5px; margin-top: 5px;">Authorization</p>
       <input id="authorization-request" type="text" style="margin-bottom: 5px;"></input>
       <p style="margin-bottom: 5px; margin-top: 5px;">URL</p>
@@ -46,9 +51,14 @@
       const actionSelected = document.querySelector('input[name="optradio"]:checked').value;
       xhttp.open(actionSelected, document.getElementById("url-request").value, true);
       //xhttp.setRequestHeader('Authorization', 'Bearer ' + "eyJraWQiOiI3UkFcL3JCc3BYZkdadDFrQ2JwVWtMMU9JN2tGNnM0aGk2SDV1SkNQWVBjST0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmZTNkYmVmNi1lZTY1LTRmMDktYTk2Zi02Y2Y1MmE0NWZkZDkiLCJjb2duaXRvOmdyb3VwcyI6WyJCYW5raW5nIl0sImlzX2JhbmtpbmciOiJ0cnVlIiwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfZDBDVWdMTEdoIiwidmVyc2lvbiI6MiwiY2xpZW50X2lkIjoiMjZsNDdpOG1kYjU1amR0dXRycWRncmY3djEiLCJvcmlnaW5fanRpIjoiNmU5MWVhODYtNWNkNC00ZjM4LWJlN2UtZjhjZWEyNGIxM2Q3IiwiZXZlbnRfaWQiOiIzODlhMGE3NC0zNWQ2LTQ4ZDItYTFiOS1iNTU1YjgzYzVhZTEiLCJ1c2VyX2lkIjoiOTFmZjM4ZjktMGQ2YS00NjdlLThlZWEtY2FlM2QxNDVhM2NmIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwiaXNfbWZhX2FjdGl2ZSI6InRydWUiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIEZpbmFuY2VcL2JhbmtpbmdTZXJ2aWNlIHBob25lIG9wZW5pZCBwcm9maWxlIGVtYWlsIEZpbmFuY2VcL2NvbnRhY3RMaXN0IiwiYXV0aF90aW1lIjoxNzE2MzE2MjY1LCJleHAiOjE3MTkwMTg0MDEsImlhdCI6MTcxOTAxNDgwMywianRpIjoiOGIxMjk2NjktOGFjOC00M2ZmLWE5YTctZjc2ODRlOTllYzI1IiwidXNlcm5hbWUiOiJmZTNkYmVmNi1lZTY1LTRmMDktYTk2Zi02Y2Y1MmE0NWZkZDkifQ.qZ-kBJhtKsfS-ReNxHvAqPublBS2G5T-rwctLo-8ERu_xDT9gzrCu5sz6EEdvvvqbg4k-piNgXL4ejvyknDmuSfeynST4VAXBcn6q9AS1J8Hi3oq2L27F0a61kUJkBmuTzHAcXhQ7BytCJfcS6i7OjTv0vkMV0AXMwNJkiXFm7yvVk4iV9OxsHIAqon5cDzgLmPEmv0G_lk6u3iR58ndCzIV7eCKeDAowo-JvcXBAj-OJG8MgrLSMPrhV3Vv6w9srg0ckHDNrGjTbnyglHqzQHvGWVI7t86XZgF4KrzBI2m8c444JgZvAvuuZrUPgld-5HDIFpVfnWsgWvcPi-czwg");
-      const authorizationSelected = document.getElementById('authorization-request').value;      
+      const authorizationSelected = document.getElementById('authorization-request').value;
       xhttp.setRequestHeader('Authorization', authorizationSelected);
-      const contentSelected = document.getElementById('body-request').value;   
+      const headerTitleSelected = document.getElementById('header-title-request').value;
+      const headerContentSelected = document.getElementById('header-content-request').value;
+      if (headerTitleSelected != "" && headerContentSelected != "") {
+        xhttp.setRequestHeader(headerTitleSelected, headerContentSelected);
+      }
+      const contentSelected = document.getElementById('body-request').value;
       xhttp.send(contentSelected);
     }
   </script>
